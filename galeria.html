@@ -68,8 +68,64 @@
   <input type="text" id="busca" placeholder="Buscar por autor, título ou descrição...">
   <div class="galeria" id="galeria"></div>
   <a class="botao" href="index.html">Voltar à Missão WHOMARS</a>
-
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>WHOMARS - Galeria de Arte</title>
+  <style>
+    body {
+      background-color: #111;
+      color: #fff;
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+    h1 {
+      text-align: center;
+      padding: 20px;
+      color: #00e6b8;
+    }
+    .galeria {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      padding: 10px;
+    }
+    .galeria a {
+      margin: 10px;
+      border: 2px solid #00e6b8;
+      border-radius: 10px;
+      overflow: hidden;
+      display: block;
+      transition: transform 0.3s;
+    }
+    .galeria a:hover {
+      transform: scale(1.05);
+    }
+    .galeria img {
+      width: 200px;
+      height: auto;
+      display: block;
+    }
+  </style>
+</head>
+<body>
+  <h1>Galeria WHOMARS</h1>
+  <div class="galeria">
+    <!-- INÍCIO DAS 70 IMAGENS -->
+    <!-- COLE AQUI a sequência de <a href=...><img src=...> gerada anteriormente -->
+    <!-- EXEMPLO: -->
+    <a href="https://ibb.co/cczb0Ydg" target="_blank"><img src="https://i.ibb.co/99Rw6Zj8/file-000000009f3861f8b791c8804d45e511.png" alt="Arte WHOMARS"></a>
+    <a href="https://ibb.co/LXt6bZm1" target="_blank"><img src="https://i.ibb.co/zTRbj4pZ/file-000000004eb06230ba6f6c37a1106c39.png" alt="Arte WHOMARS"></a>
+    <a href="https://ibb.co/Tqwb85W9" target="_blank"><img src="https://i.ibb.co/tPHxs5LV/file-0000000032f0623083c0e5053cf96a7a.png" alt="Arte WHOMARS"></a>
+    <!-- ... (continue até as 70 imagens que você já organizou) -->
+    <!-- FIM DAS 70 IMAGENS -->
+  </div>
+</body>
+</html>
   <script>
+
     async function carregarGaleria() {
       const resposta = await fetch("https://opensheet.elk.sh/170SkNOp1pX22FJs7xgsNs4McSTIldLwI/1");
       const dados = await resposta.json();
