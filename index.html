@@ -1,79 +1,111 @@
- <!DOCTYPE html>
+  <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
-  <title>WHOMARS - Envio de Arte</title>
+  <title>Galeria WHOMARS</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
     body {
-      background-color: #111;
+      background-color: #000;
       color: #fff;
       font-family: Arial, sans-serif;
       text-align: center;
-      padding: 30px;
+      margin: 0;
+      padding: 0;
     }
     h1 {
+      margin-top: 30px;
+      color: #00ffcc;
+    }
+    input {
+      width: 90%;
+      max-width: 400px;
+      padding: 10px;
+      margin: 20px auto;
+      border-radius: 10px;
+      border: none;
+      font-size: 16px;
+    }
+    .galeria {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      padding: 20px;
+    }
+    .item {
+      background: #111;
+      border: 1px solid #333;
+      border-radius: 10px;
+      margin: 10px;
+      padding: 10px;
+      width: 250px;
+    }
+    .item img {
+      width: 100%;
+      border-radius: 10px;
+    }
+    .item h3 {
+      margin: 10px 0 5px;
+      font-size: 18px;
       color: #00e6b8;
     }
-    .botao, button {
-      background-color: #00b894;
-      color: white;
-      padding: 15px 25px;
-      font-size: 16px;
-      border-radius: 8px;
-      border: none;
-      cursor: pointer;
-      margin: 15px;
-      box-shadow: 0 0 8px #00e6b8;
+    .item p {
+      font-size: 14px;
     }
-    .botao:hover {
+    .botao {
       background-color: #00e6b8;
-    }
-    form {
-      background-color: #1a1a1a;
-      padding: 20px;
+      color: black;
+      padding: 10px 20px;
+      margin: 20px auto;
       border-radius: 10px;
-      max-width: 500px;
-      margin: 30px auto;
-      box-shadow: 0 0 10px #00e6b8;
-      display: none;
-    }
-    input, textarea {
-      width: 100%;
-      padding: 10px;
-      margin: 10px 0;
-      border: none;
-      border-radius: 5px;
+      text-decoration: none;
+      display: inline-block;
     }
   </style>
 </head>
 <body>
-
-  <h1>Envio de Arte - WHOMARS</h1>
-  <p>Para postar sua arte, faça o pagamento de <strong>R$ 20,00 via Pix</strong>:</p>
-  <p><strong>Chave Pix:</strong> (11) 98376-6776<br>
-  <strong>Nome:</strong> Paulo José Gonçalves</p>
-
-  <button onclick="liberarFormulario()" class="botao">Já paguei, quero enviar minha arte</button>
-
-  <form id="formulario" action="https://formsubmit.co/paulojgoncalves2013@gmail.com" method="POST" enctype="multipart/form-data">
-    <h2 style="color:#00e6b8;">Exponha Sua Arte</h2>
-
-    <input type="text" name="nome" placeholder="Seu nome ou nome artístico" required>
-    <input type="text" name="titulo" placeholder="Título da obra" required>
-    <textarea name="descricao" placeholder="Descrição da arte" rows="4" required></textarea>
-    <input type="file" name="imagem" accept="image/*" required>
-    <input type="text" name="comprovante" placeholder="Informe o ID ou link do comprovante Pix" required>
-
-    <button type="submit">Enviar Arte</button>
-    <input type="hidden" name="_next" value="https://gpfk.github.io/obrigado.html">
-    <input type="hidden" name="_captcha" value="false">
-  </form>
+  <h1>Galeria de Artes WHOMARS</h1>
+  <input type="text" id="busca" placeholder="Buscar por autor, título ou descrição...">
+  <div class="galeria" id="galeria"></div>
+  <a class="botao" href="index.html">Voltar à Missão WHOMARS</a>
 
   <script>
-    function liberarFormulario() {
-      document.getElementById("formulario").style.display = "block";
+    async function carregarGaleria() {
+      const resposta = await fetch("https://opensheet.elk.sh/170SkNOp1pX22FJs7xgsNs4McSTIldLwI/1");
+      const dados = await resposta.json();
+
+      const galeria = document.getElementById("galeria");
+      const busca = document.getElementById("busca");
+
+      function renderizar(filtro = "") {
+        galeria.innerHTML = "";
+        dados
+          .filter(item =>
+            item.nome?.toLowerCase().includes(filtro) ||
+            item.titulo?.toLowerCase().includes(filtro) ||
+            item.descricao?.toLowerCase().includes(filtro)
+          )
+          .forEach(item => {
+            const div = document.createElement("div");
+            div.className = "item";
+            div.innerHTML = `
+              <img src="${item.imagem}" alt="${item.titulo}">
+              <h3>${item.titulo}</h3>
+              <p>${item.descricao}</p>
+              <p><em>${item.nome}</em></p>
+            `;
+            galeria.appendChild(div);
+          });
+      }
+
+      busca.addEventListener("input", () => {
+        renderizar(busca.value.toLowerCase());
+      });
+
+      renderizar();
     }
+
+    carregarGaleria();
   </script>
 </body>
 </html>
