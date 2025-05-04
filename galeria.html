@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Galeria WHOMARS</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      background-color: #000;
+      color: #fff;
+      font-family: Arial, sans-serif;
+      text-align: center;
+      margin: 0;
+      padding: 0;
+    }
+    h1 {
+      margin-top: 30px;
+      color: #00ffcc;
+    }
+    input {
+      width: 90%;
+      max-width: 400px;
+      padding: 10px;
+      margin: 20px auto;
+      border-radius: 10px;
+      border: none;
+      font-size: 16px;
+    }
+    .galeria {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      padding: 20px;
+    }
+    .item {
+      background: #111;
+      border: 1px solid #333;
+      border-radius: 10px;
+      margin: 10px;
+      padding: 10px;
+      width: 250px;
+    }
+    .item img {
+      width: 100%;
+      border-radius: 10px;
+    }
+    .item h3 {
+      margin: 10px 0 5px;
+      font-size: 18px;
+      color: #00e6b8;
+    }
+    .item p {
+      font-size: 14px;
+    }
+    .botao {
+      background-color: #00e6b8;
+      color: black;
+      padding: 10px 20px;
+      margin: 20px auto;
+      border-radius: 10px;
+      text-decoration: none;
+      display: inline-block;
+    }
+  </style>
+</head>
+<body>
+  <h1>Galeria de Artes WHOMARS</h1>
+  <input type="text" id="busca" placeholder="Buscar por autor, título ou descrição...">
+  <div class="galeria" id="galeria"></div>
+  <a class="botao" href="index.html">Voltar à Missão WHOMARS</a>
+
+  <script>
+    async function carregarGaleria() {
+      const resposta = await fetch("https://opensheet.elk.sh/170SkNOp1pX22FJs7xgsNs4McSTIldLwI/1");
+      const dados = await resposta.json();
+
+      const galeria = document.getElementById("galeria");
+      const busca = document.getElementById("busca");
+
+      function renderizar(filtro = "") {
+        galeria.innerHTML = "";
+        dados
+          .filter(item =>
+            item.nome?.toLowerCase().includes(filtro) ||
+            item.titulo?.toLowerCase().includes(filtro) ||
+            item.descricao?.toLowerCase().includes(filtro)
+          )
+          .forEach(item => {
+            const div = document.createElement("div");
+            div.className = "item";
+            div.innerHTML = `
+              <img src="${item.imagem}" alt="${item.titulo}">
+              <h3>${item.titulo}</h3>
+              <p>${item.descricao}</p>
+              <p><em>${item.nome}</em></p>
+            `;
+            galeria.appendChild(div);
+          });
+      }
+
+      busca.addEventListener("input", () => {
+        renderizar(busca.value.toLowerCase());
+      });
+
+      renderizar();
+    }
+
+    carregarGaleria();
+  </script>
+</body>
+</html>
