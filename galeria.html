@@ -1,4 +1,4 @@
- <!DOCTYPE html>
+  <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
@@ -6,104 +6,106 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
     body {
-      background-color: #111;
+      background-color: #000;
       color: #fff;
       font-family: Arial, sans-serif;
-      padding: 20px;
       text-align: center;
+      margin: 0;
+      padding: 0;
     }
     h1 {
-      color: #00e6b8;
+      margin-top: 30px;
+      color: #00ffcc;
     }
     input {
-      padding: 10px;
       width: 90%;
       max-width: 400px;
+      padding: 10px;
       margin: 20px auto;
-      border-radius: 5px;
+      border-radius: 10px;
       border: none;
-      outline: none;
+      font-size: 16px;
     }
-    .grid {
+    .galeria {
       display: flex;
       flex-wrap: wrap;
       justify-content: center;
-      gap: 20px;
+      padding: 20px;
     }
     .item {
-      background: #1a1a1a;
-      padding: 15px;
+      background: #111;
+      border: 1px solid #333;
       border-radius: 10px;
-      width: 280px;
-      box-shadow: 0 0 10px #00e6b8;
+      margin: 10px;
+      padding: 10px;
+      width: 250px;
     }
-    img {
-      max-width: 100%;
-      border-radius: 5px;
+    .item img {
+      width: 100%;
+      border-radius: 10px;
     }
-    .titulo {
-      font-weight: bold;
-      margin-top: 10px;
+    .item h3 {
+      margin: 10px 0 5px;
+      font-size: 18px;
+      color: #00e6b8;
     }
-    .autor {
-      font-style: italic;
-      color: #ccc;
+    .item p {
+      font-size: 14px;
     }
-    .descricao {
-      margin-top: 5px;
-    }
-    a.botao {
-      display: inline-block;
-      margin: 30px auto;
-      padding: 12px 25px;
-      background-color: #00b894;
-      color: white;
+    .botao {
+      background-color: #00e6b8;
+      color: black;
+      padding: 10px 20px;
+      margin: 20px auto;
+      border-radius: 10px;
       text-decoration: none;
-      border-radius: 8px;
-      box-shadow: 0 0 10px #00e6b8;
+      display: inline-block;
     }
   </style>
 </head>
 <body>
   <h1>Galeria de Artes WHOMARS</h1>
   <input type="text" id="busca" placeholder="Buscar por autor, título ou descrição...">
-  <div class="grid" id="galeria"></div>
+  <div class="galeria" id="galeria"></div>
   <a class="botao" href="index.html">Voltar à Missão WHOMARS</a>
 
   <script>
-    const planilhaId = "170SkNOp1pX22FJs7xgsNs4McSTIldLwI";
-    const aba = "Página1";
-    const url = `https://opensheet.elk.sh/${planilhaId}/${aba}`;
+    async function carregarGaleria() {
+      const resposta = await fetch("https://opensheet.elk.sh/170SkNOp1pX22FJs7xgsNs4McSTIldLwI/1");
+      const dados = await resposta.json();
 
-    async function carregar() {
-      const res = await fetch(url);
-      const dados = await res.json();
       const galeria = document.getElementById("galeria");
       const busca = document.getElementById("busca");
 
-      function exibir(filtro = "") {
+      function renderizar(filtro = "") {
         galeria.innerHTML = "";
-        dados.forEach(item => {
-          const texto = (item.autor + item.titulo + item.descricao).toLowerCase();
-          if (texto.includes(filtro.toLowerCase())) {
+        dados
+          .filter(item =>
+            item.nome?.toLowerCase().includes(filtro) ||
+            item.titulo?.toLowerCase().includes(filtro) ||
+            item.descricao?.toLowerCase().includes(filtro)
+          )
+          .forEach(item => {
             const div = document.createElement("div");
             div.className = "item";
             div.innerHTML = `
               <img src="${item.imagem}" alt="${item.titulo}">
-              <div class="titulo">${item.titulo}</div>
-              <div class="autor">${item.autor}</div>
-              <div class="descricao">${item.descricao}</div>
+              <h3>${item.titulo}</h3>
+              <p>${item.descricao}</p>
+              <p><em>${item.nome}</em></p>
             `;
             galeria.appendChild(div);
-          }
-        });
+          });
       }
 
-      busca.addEventListener("input", e => exibir(e.target.value));
-      exibir();
+      busca.addEventListener("input", () => {
+        renderizar(busca.value.toLowerCase());
+      });
+
+      renderizar();
     }
 
-    carregar();
+    carregarGaleria();
   </script>
 </body>
 </html>
