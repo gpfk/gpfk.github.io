@@ -1,35 +1,29 @@
- <!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-  <meta charset="UTF-8">
-  <title>Obrigado!</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <style>
-    body {
-      background-color: #111;
-      color: #00e6b8;
-      font-family: Arial, sans-serif;
-      text-align: center;
-      padding: 60px;
-    }
-    h1 {
-      font-size: 28px;
-      margin-bottom: 20px;
-    }
-    a {
-      display: inline-block;
-      background: #00b894;
-      color: #fff;
-      padding: 12px 20px;
-      border-radius: 8px;
-      text-decoration: none;
-      margin-top: 30px;
-    }
-  </style>
-</head>
-<body>
-  <h1>Arte enviada com sucesso!</h1>
-  <p>Obrigado por participar da Galeria WHOMARS.</p>
-  <a href="index.html">Voltar para o início</a>
-</body>
-</html>
+ <h1>Bem-vindo à missão WHOMARS</h1>
+<p>Explore o espaço da criatividade memeira e compartilhe sua arte.</p>
+
+<a href="galeria.html">
+  <button class="botao">Ver Galeria</button>
+</a>
+
+<a href="#formulario">
+  <button class="botao">Quero Expor Minha Arte</button>
+</a>
+
+<form id="formulario" action="https://formsubmit.co/paulojgoncalves2013@gmail.com" method="POST" enctype="multipart/form-data">
+  <h2 style="color:#00e6b8;">Exponha Sua Arte</h2>
+  <p><strong>Para participar, faça um Pix de <span style="color:#00e6b8;">R$ 20,00</span> e envie sua arte.</strong></p>
+
+  <div style="background-color:#1a1a1a; padding:10px; border:1px solid #00e6b8; border-radius:10px; font-size:13px; color:#ccc; word-break:break-word; margin:10px 0;">
+    <strong>Código Pix Copia e Cola:</strong><br>
+    00020126680014br.gov.bcb.pix0136+5511983766776PauloJose520400005303986540520.005802BR5925Paulo Jose Goncalves6009SaoPaulo62070503***6304ABCD
+  </div>
+
+  <input type="text" name="nome" placeholder="Seu nome ou nome artístico" required>
+  <input type="text" name="titulo" placeholder="Título da obra" required>
+  <textarea name="descricao" placeholder="Breve descrição da arte" rows="4" required></textarea>
+  <input type="file" name="imagem" accept="image/*" required>
+
+  <button type="submit">Enviar Arte</button>
+  <input type="hidden" name="_next" value="https://gpfk.github.io/obrigado.html">
+  <input type="hidden" name="_captcha" value="false">
+</form>
