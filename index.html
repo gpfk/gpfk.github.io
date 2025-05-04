@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>WHOMARS - Galeria de Artes</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      background-color: #111;
+      color: #fff;
+      font-family: Arial, sans-serif;
+      text-align: center;
+      padding: 50px;
+    }
+    h1 {
+      color: #00e6b8;
+    }
+    .botao {
+      background-color: #00b894;
+      color: white;
+      padding: 15px 30px;
+      font-size: 18px;
+      border-radius: 10px;
+      border: none;
+      cursor: pointer;
+      margin: 20px;
+      box-shadow: 0 0 10px #00e6b8;
+    }
+    .botao:hover {
+      background-color: #00e6b8;
+    }
+    form {
+      background-color: #1a1a1a;
+      padding: 20px;
+      border-radius: 10px;
+      max-width: 500px;
+      margin: 40px auto;
+      box-shadow: 0 0 10px #00e6b8;
+    }
+    input, textarea {
+      width: 100%;
+      padding: 10px;
+      margin: 10px 0;
+      border: none;
+      border-radius: 5px;
+    }
+    button[type="submit"] {
+      background-color: #00b894;
+      color: white;
+      padding: 12px 25px;
+      font-size: 16px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      box-shadow: 0 0 8px #00e6b8;
+    }
+    button[type="submit"]:hover {
+      background-color: #00e6b8;
+    }
+  </style>
+</head>
+<body>
+  <h1>Bem-vindo à missão WHOMARS</h1>
+  <p>Explore o espaço da criatividade memeira e compartilhe sua arte.</p>
+
+  <a href="galeria.html">
+    <button class="botao">Ver Galeria</button>
+  </a>
+
+  <a href="#formulario">
+    <button class="botao">Quero Expor Minha Arte</button>
+  </a>
+
+  <form id="formulario" action="https://formsubmit.co/paulojgoncalves2013@gmail.com" method="POST" enctype="multipart/form-data">
+    <h2 style="color:#00e6b8;">Exponha Sua Arte</h2>
+    <p><strong>Teste gratuito ativo</strong> — Nenhum Pix necessário.</p>
+
+    <input type="text" name="nome" placeholder="Seu nome ou nome artístico" required>
+    <input type="text" name="titulo" placeholder="Título da obra" required>
+    <textarea name="descricao" placeholder="Breve descrição da arte" rows="4" required></textarea>
+    <input type="file" name="imagem" accept="image/*" required>
+
+    <button type="submit">Enviar Arte</button>
+    <input type="hidden" name="_next" value="https://gpfk.github.io/obrigado.html">
+    <input type="hidden" name="_captcha" value="false">
+  </form>
+</body>
+</html>
