@@ -1,5 +1,4 @@
- <!DOCTYPE html>
-<html lang="pt-BR">
+ <!DOCTYPE html><html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
   <title>WHOMARS - Página Principal</title>
@@ -29,18 +28,53 @@
     .botao:hover {
       background-color: #00e6b8;
     }
+    form {
+      background-color: #1a1a1a;
+      padding: 20px;
+      border-radius: 10px;
+      max-width: 500px;
+      margin: 40px auto;
+      box-shadow: 0 0 10px #00e6b8;
+    }
+    input, textarea {
+      width: 100%;
+      padding: 10px;
+      margin: 10px 0;
+      border: none;
+      border-radius: 5px;
+    }
+    button[type="submit"] {
+      background-color: #00b894;
+      color: white;
+      padding: 12px 25px;
+      font-size: 16px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      box-shadow: 0 0 8px #00e6b8;
+    }
+    button[type="submit"]:hover {
+      background-color: #00e6b8;
+    }
   </style>
 </head>
 <body>
   <h1>Bem-vindo à missão WHOMARS</h1>
-  <p>Clique abaixo para acessar a galeria secreta de foguetes.</p>
-
-  <a href="galeria.html">
+  <p>Clique abaixo para acessar a galeria secreta de foguetes.</p>  <a href="galeria.html">
     <button class="botao">Ver Galeria</button>
-  </a>
-
-  <a href="index.html#formulario">
+  </a>  <a href="#formulario">
     <button class="botao">Quero Expor Minha Arte</button>
-  </a>
+  </a>  <form id="formulario" action="https://formsubmit.co/paulojgoncalves2013@gmail.com" method="POST" enctype="multipart/form-data">
+    <h2>Exponha Sua Arte na Galeria WHOMARS</h2>
+    <p style="color: #00e6b8;">Taxa única: R$ 20,00 via Pix</p>
+    <p>Chave Pix: <strong>(11) 98376-6776</strong></p>
+    <input type="text" name="nome" placeholder="Seu nome/artista" required>
+    <input type="text" name="titulo" placeholder="Título da obra" required>
+    <textarea name="descricao" placeholder="Descrição da arte" rows="4" required></textarea>
+    <input type="file" name="imagem" accept="image/*" required>
+    <input type="text" name="comprovante" placeholder="Comprovante do Pix (ID ou link)" required>
+    <button type="submit">Enviar Arte</button>
+    <input type="hidden" name="_next" value="https://whomars.github.io/obrigado.html">
+  </form>
 </body>
 </html>
