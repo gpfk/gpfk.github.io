@@ -1,11 +1,10 @@
- <!DOCTYPE html>
+  <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
   <title>WHOMARS - Galeria de Artes</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="Exponha sua arte no universo WHOMARS e participe da resistência criativa.">
-  <meta name="google-site-verification" content="google7e0ac62ec72c678b" />
   <meta property="og:title" content="WHOMARS - Galeria de Artes">
   <meta property="og:description" content="Junte-se à missão WHOMARS e compartilhe sua criatividade memeira.">
   <meta property="og:image" content="https://i.ibb.co/r2NXXb5c/file-00000000c33462309db9c7afeb488028.png">
@@ -21,6 +20,15 @@
       font-family: Arial, sans-serif;
       text-align: center;
       padding: 30px;
+      position: relative;
+    }
+    body::before {
+      content: "";
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0, 0, 0, 0.5);
+      z-index: -1;
     }
     h1 {
       color: #00e6b8;
@@ -33,35 +41,150 @@
       border-radius: 10px;
       border: none;
       cursor: pointer;
-      margin: 10px;
-      box-shadow: 0 0 10px #00b894;
-      text-decoration: none;
-    }
-    .galeria {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 15px;
-      margin-top: 20px;
-    }
-    .galeria img {
+      margin: 15px auto;
+      display: block;
+      width: 90%;
       max-width: 300px;
+      box-shadow: 0 0 10px #00e6b8;
+    }
+    .botao:hover {
+      background-color: #00e6b8;
+    }
+    .botao-merch {
+      background-color: #ff7675;
+    }
+    form {
+      background-color: #1a1a1a;
+      padding: 20px;
       border-radius: 10px;
-      box-shadow: 0 0 10px #00b894;
+      max-width: 500px;
+      margin: 40px auto;
+      box-shadow: 0 0 10px #00e6b8;
+    }
+    input, textarea {
+      width: 100%;
+      padding: 12px;
+      margin: 8px 0;
+      border: none;
+      border-radius: 6px;
+      font-size: 14px;
+    }
+    button[type="submit"] {
+      background-color: #00b894;
+      color: white;
+      padding: 12px 25px;
+      font-size: 16px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      box-shadow: 0 0 8px #00e6b8;
+    }
+    button[type="submit"]:hover {
+      background-color: #00e6b8;
+    }
+    .pix-box {
+      background-color: #222;
+      color: #ddd;
+      padding: 10px;
+      border-radius: 8px;
+      border: 1px solid #00e6b8;
+      font-size: 13px;
+      word-wrap: break-word;
+      margin: 15px 0;
+    }
+    .pix-box img {
+      margin-top: 10px;
+      max-width: 200px;
+      border-radius: 8px;
+    }
+    #preview {
+      display: none;
+      max-width: 100%;
+      margin-top: 15px;
+      border-radius: 8px;
     }
   </style>
 </head>
 <body>
-  <h1>WHOMARS - Galeria de Artes</h1>
-  <p>Explore as obras da resistência e apoie o movimento criativo interplanetário.</p>
-  <a class="botao" href="https://www.buymeacoffee.com/whomars" target="_blank">Apoiar com um café</a>
-  <a class="botao" href="https://gpfk.github.io">Voltar para o site</a>
 
-  <div class="galeria">
-    <img src="https://i.ibb.co/99Rw6Zj8/file-000000009f3861f8b791c8804d45e511.png" alt="Arte WHOMARS 1">
-    <img src="https://i.ibb.co/zTRbj4pZ/file-000000004eb06230ba6f6c37a1106c39.png" alt="Arte WHOMARS 2">
-    <img src="https://i.ibb.co/tPHxs5LV/file-0000000032f0623083c0e5053cf96a7a.png" alt="Arte WHOMARS 3">
-    <!-- Adicione mais imagens conforme necessário -->
+  <h1>Bem-vindo à missão WHOMARS</h1>
+  <p>Explore o espaço da criatividade memeira e compartilhe sua arte.</p>
+
+  <a href="galeria.html">
+    <button class="botao">Ver Galeria</button>
+  </a>
+
+  <a href="#formulario">
+    <button class="botao">Quero Expor Minha Arte</button>
+  </a>
+
+  <a href="https://opensea.io/collection/exercito-global-de-resistencia" target="_blank">
+    <button class="botao">Ver no OpenSea</button>
+  </a>
+
+  <!-- Loja de produtos -->
+  <a href="https://sualoja.printful.com" target="_blank">
+    <button class="botao botao-merch">Comprar Camisetas & Pôsteres</button>
+  </a>
+
+  <!-- Apoie com Buy Me a Coffee -->
+  <a href="https://buymeacoffee.com/whomars" target="_blank">
+    <img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" alt="Buy Me A Coffee" style="height: 60px; width: 217px; margin: 20px auto;">
+  </a>
+
+  <!-- Formulário de envio -->
+  <form id="formulario" action="https://formsubmit.co/paulojgoncalves2013@gmail.com" method="POST" enctype="multipart/form-data">
+    <h2 style="color:#00e6b8;">Exponha Sua Arte</h2>
+    <p><strong>Para participar, faça um Pix de <span style="color:#00e6b8;">R$ 20,00</span> antes do envio.</strong></p>
+
+    <div class="pix-box">
+      <strong>PIX Copia e Cola:</strong><br>
+      00020101021126530014br.gov.bcb.pix0131paulojgoncalves2012@hotmail.com5204000053039865802BR5920Paulo Jose Goncalves6015ITAQUAQUECETUBA62070503***6304A86C
+      <br>
+      <img src="https://api.qrserver.com/v1/create-qr-code/?data=00020101021126530014br.gov.bcb.pix0131paulojgoncalves2012%40hotmail.com5204000053039865802BR5920Paulo%20Jose%20Goncalves6015ITAQUAQUECETUBA62070503***6304A86C&size=300x300" alt="QR Code Pix">
+    </div>
+
+    <p style="font-size:13px; color:#ccc;">Após o envio, você será redirecionado automaticamente para uma página de confirmação.</p>
+
+    <input type="text" name="nome" placeholder="Seu nome ou nome artístico" required>
+    <input type="text" name="titulo" placeholder="Título da obra" required>
+    <textarea name="descricao" placeholder="Breve descrição da arte" rows="4" required></textarea>
+    <input type="file" name="imagem" accept="image/*" required onchange="previewImagem(this)">
+    <img id="preview" alt="Preview da imagem">
+
+    <input type="text" name="_honey" style="display:none">
+    <input type="hidden" name="_next" value="https://gpfk.github.io/obrigado.html">
+    <input type="hidden" name="_captcha" value="false">
+    <button type="submit">Enviar Arte</button>
+  </form>
+
+  <!-- Anúncio Coinzilla -->
+  <div style="margin: 30px auto;">
+    <script async src="https://ads.coinzilla.com/lib/display.js"></script>
+    <div id="coinzilla"></div>
+    <script>
+      window.coinzilla_display = window.coinzilla_display || [];
+      coinzilla_display.push({
+        zone: "ID_DA_SUA_ZONA",
+        width: "728",
+        height: "90"
+      });
+    </script>
   </div>
+
+  <script>
+    function previewImagem(input) {
+      const img = document.getElementById('preview');
+      if (input.files && input.files[0]) {
+        const reader = new FileReader();
+        reader.onload = e => {
+          img.src = e.target.result;
+          img.style.display = 'block';
+        };
+        reader.readAsDataURL(input.files[0]);
+      }
+    }
+  </script>
+
 </body>
 </html>
