@@ -24,15 +24,27 @@
       text-align: center;
       padding: 30px;
     }
+
     h1 {
       color: #00e6b8;
+      margin-bottom: 20px;
     }
+
     p {
       max-width: 700px;
       margin: auto;
       font-size: 18px;
       line-height: 1.6;
     }
+
+    .botoes {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+      margin: 30px 0;
+    }
+
     .botao {
       background-color: #00b894;
       color: white;
@@ -41,10 +53,12 @@
       border-radius: 10px;
       border: none;
       cursor: pointer;
-      margin: 10px;
       box-shadow: 0 0 10px #00b894;
       text-decoration: none;
+      width: 90%;
+      max-width: 300px;
     }
+
     .galeria {
       display: flex;
       flex-wrap: wrap;
@@ -52,6 +66,7 @@
       gap: 15px;
       margin-top: 30px;
     }
+
     .galeria img {
       max-width: 300px;
       border-radius: 10px;
@@ -60,15 +75,16 @@
   </style>
 </head>
 <body>
-  <h1>WHOMARS - Resistência Criativa</h1>
+  <h1>WHOMARS – Resistência Criativa</h1>
   <p>
     A WHOMARS é uma galeria de arte digital que mistura estética cyberpunk, crítica social e provocações visuais no formato de NFTs e obras independentes.  
-    Aqui, cada imagem é um grito visual.  
-    Apoie a continuidade do projeto com um café — e ajude a manter a rebelião acesa.
+    Aqui, cada imagem é um grito visual. Apoie a continuidade do projeto com um café — e ajude a manter a rebelião acesa.
   </p>
 
-  <a class="botao" href="https://www.buymeacoffee.com/whomars" target="_blank">Apoie com um café</a>
-  <a class="botao" href="https://gpfk.github.io">Voltar para o site</a>
+  <div class="botoes">
+    <a class="botao" href="https://www.buymeacoffee.com/whomars" target="_blank">Apoie com um café</a>
+    <a class="botao" href="https://gpfk.github.io">Voltar para o site</a>
+  </div>
 
   <div class="galeria">
     <img src="https://i.ibb.co/99Rw6Zj8/file-000000009f3861f8b791c8804d45e511.png" alt="Arte WHOMARS 1">
