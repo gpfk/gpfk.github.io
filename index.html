@@ -1,106 +1,124 @@
-   <!DOCTYPE html>
-<html lang="pt-BR">
+ <!DOCTYPE html><html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
-  <title>WHOMARS - Galeria de Artes</title>
+  <title>Galeria WHOMARS</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
     body {
-      background-color: #111;
+      background: url('https://i.ibb.co/fVTbB9Ty/file-00000000c87861f8855f40903cbd33ed.png') no-repeat center center fixed;
+      background-size: cover;
       color: #fff;
       font-family: Arial, sans-serif;
       text-align: center;
-      padding: 30px;
+      margin: 0;
+      padding: 0;
     }
     h1 {
+      margin-top: 30px;
+      color: #00ffcc;
+    }
+    input {
+      width: 90%;
+      max-width: 400px;
+      padding: 10px;
+      margin: 20px auto;
+      border-radius: 10px;
+      border: none;
+      font-size: 16px;
+    }
+    .galeria {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      padding: 20px;
+    }
+    .item {
+      background: rgba(0, 0, 0, 0.6);
+      border: 1px solid #333;
+      border-radius: 10px;
+      margin: 10px;
+      padding: 10px;
+      width: 250px;
+    }
+    .item img {
+      width: 100%;
+      border-radius: 10px;
+    }
+    .item h3 {
+      margin: 10px 0 5px;
+      font-size: 18px;
       color: #00e6b8;
     }
-    .botao {
-      background-color: #00b894;
-      color: white;
-      padding: 12px 24px;
-      font-size: 16px;
-      border-radius: 10px;
-      border: none;
-      cursor: pointer;
-      margin: 10px;
-      box-shadow: 0 0 10px #00e6b8;
-    }
-    .botao:hover {
-      background-color: #00e6b8;
-    }
-    form {
-      background-color: #1a1a1a;
-      padding: 20px;
-      border-radius: 10px;
-      max-width: 500px;
-      margin: 40px auto;
-      box-shadow: 0 0 10px #00e6b8;
-    }
-    input, textarea {
-      width: 100%;
-      padding: 12px;
-      margin: 8px 0;
-      border: none;
-      border-radius: 6px;
+    .item p {
       font-size: 14px;
     }
-    button[type="submit"] {
-      background-color: #00b894;
-      color: white;
-      padding: 12px 25px;
-      font-size: 16px;
-      border: none;
-      border-radius: 8px;
-      cursor: pointer;
-      box-shadow: 0 0 8px #00e6b8;
-    }
-    button[type="submit"]:hover {
+    .botao {
       background-color: #00e6b8;
+      color: black;
+      padding: 10px 20px;
+      margin: 20px auto;
+      border-radius: 10px;
+      text-decoration: none;
+      display: inline-block;
     }
-    .pix-box {
-      background-color: #222;
-      color: #ddd;
-      padding: 10px;
-      border-radius: 8px;
-      border: 1px solid #00e6b8;
-      font-size: 13px;
-      word-wrap: break-word;
-      margin: 15px 0;
+    .redes {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      margin: 20px 0;
+    }
+    .redes a {
+      color: #00ffcc;
+      font-size: 24px;
+      text-decoration: none;
     }
   </style>
 </head>
 <body>
+  <h1>Galeria de Artes WHOMARS</h1>
+  <div class="redes">
+    <a href="https://x.com/share?url=https://seudominio.com" target="_blank">Twitter</a>
+    <a href="https://wa.me/?text=Confira%20a%20Galeria%20WHOMARS:%20https://seudominio.com" target="_blank">WhatsApp</a>
+  </div>
+  <input type="text" id="busca" placeholder="Buscar por autor, título ou descrição...">
+  <div class="galeria" id="galeria"></div>
+  <a class="botao" href="index.html">Voltar à Missão WHOMARS</a>
+  <script>
+    async function carregarGaleria() {
+      const resposta = await fetch("https://opensheet.elk.sh/170SkNOp1pX22FJs7xgsNs4McSTIldLwI/1");
+      const dados = await resposta.json();const galeria = document.getElementById("galeria");
+  const busca = document.getElementById("busca");
 
-  <h1>Bem-vindo à missão WHOMARS</h1>
-  <p>Explore o espaço da criatividade memeira e compartilhe sua arte.</p>
+  function renderizar(filtro = "") {
+    galeria.innerHTML = "";
+    dados
+      .filter(item =>
+        item.nome?.toLowerCase().includes(filtro) ||
+        item.titulo?.toLowerCase().includes(filtro) ||
+        item.descricao?.toLowerCase().includes(filtro)
+      )
+      .forEach(item => {
+        const div = document.createElement("div");
+        div.className = "item";
+        div.innerHTML = `
+          <img src="${item.imagem}" alt="${item.titulo}">
+          <h3>${item.titulo}</h3>
+          <p>${item.descricao}</p>
+          <p><em>${item.nome}</em></p>
+        `;
+        galeria.appendChild(div);
+      });
+  }
 
-  <a href="galeria.html">
-    <button class="botao">Ver Galeria</button>
-  </a>
+  busca.addEventListener("input", () => {
+    renderizar(busca.value.toLowerCase());
+  });
 
-  <a href="#formulario">
-    <button class="botao">Quero Expor Minha Arte</button>
-  </a>
+  renderizar();
+}
 
-  <form id="formulario" action="https://formsubmit.co/paulojgoncalves2013@gmail.com" method="POST" enctype="multipart/form-data">
-    <h2 style="color:#00e6b8;">Exponha Sua Arte</h2>
-    <p><strong>Para participar, faça um Pix de <span style="color:#00e6b8;">R$ 20,00</span> antes do envio.</strong></p>
+carregarGaleria();
 
-    <div class="pix-box">
-      <strong>PIX Copia e Cola:</strong><br>
-      00020126680014br.gov.bcb.pix0136+5511983766776PauloJose520400005303986540520.005802BR5925Paulo Jose Goncalves6009SaoPaulo62070503***6304ABCD
-    </div>
-
-    <input type="text" name="nome" placeholder="Seu nome ou nome artístico" required>
-    <input type="text" name="titulo" placeholder="Título da obra" required>
-    <textarea name="descricao" placeholder="Breve descrição da arte" rows="4" required></textarea>
-    <input type="file" name="imagem" accept="image/*" required>
-
-    <button type="submit">Enviar Arte</button>
-    <input type="hidden" name="_next" value="https://gpfk.github.io/obrigado.html">
-    <input type="hidden" name="_captcha" value="false">
-  </form>
-
+  </script>
 </body>
 </html>
